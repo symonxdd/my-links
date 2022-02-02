@@ -1,0 +1,16 @@
+<head>
+    <script src="../js/handlebars.js"></script>
+</head>
+
+<body>
+    <script id="template" type="text/x-handlebars-template">
+        <div class="entry">
+        {{#if links}}
+            {{#each links as |link|}}
+                <div class="link">{{link}}</div>
+            {{/each}}
+        {{/if}}                
+        </div>
+    </script>
+    <script src="../js/sandbox.js"></script>
+</body>

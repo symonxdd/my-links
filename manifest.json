@@ -1,0 +1,21 @@
+{
+    "name": "🧨 My Links!",
+    "description": "Links, Presets & Handlebars",
+    "version": "1.0",
+    "manifest_version": 2,
+    "permissions": [
+        "storage"
+    ],
+    "background": {
+        "page": "html/background.html",
+        "persistent": false
+    },
+    "browser_action": {
+        "default_popup": "html/popup.html"
+    },
+    "sandbox": {
+        "pages": [
+            "html/sandbox.html"
+        ]
+    }
+}
