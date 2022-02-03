@@ -45,8 +45,10 @@ window.addEventListener('message', event => {
 
 document.addEventListener('click', event => {
     const elementValue = event.target.value;
-    const linksArray = elementValue.split(',');
-    openLinksInNewTabs(linksArray);
+    const linksArray = elementValue?.split(',');
+    if (linksArray) {
+        openLinksInNewTabs(linksArray);
+    }
 });
 
 function openLinksInNewTabs(links, active = false) {
