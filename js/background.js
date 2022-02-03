@@ -3,14 +3,16 @@ let _popup;
 chrome.runtime.onMessage.addListener((request, sender, respond) => {
     if (request.action === "PopupHasBeenOpened") {
         _popup = chrome.extension.getViews({ type: 'popup' })[0];
-        const iframe = document.getElementById('my-iframe').contentWindow;
+        const sandboxIframe = document.getElementById('sandbox-iframe').contentWindow;
         chrome.storage.local.get({
-            links: []
+            links: [],
+            presets: []
         }, items => {
             if (items.links) {
-                iframe.postMessage({
+                sandboxIframe.postMessage({
                     action: "ReadyToCompile",
-                    links: items.links
+                    links: items.links,
+                    presets: items.presets
                 }, '*');
             }
         });
