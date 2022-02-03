@@ -2,33 +2,20 @@
     "name": "🧨 My Links!",
     "description": "Links, Presets & Handlebars",
     "version": "1.0",
-    "manifest_version": 3,
+    "manifest_version": 2,
     "permissions": [
         "storage"
     ],
     "background": {
-        "service_worker": "js/service_worker.js",
-        "type": "module"
+        "page": "html/background.html",
+        "persistent": false
     },
-    "action": {
+    "browser_action": {
         "default_popup": "html/popup.html"
     },
     "sandbox": {
         "pages": [
             "html/sandbox.html"
         ]
-    },
-    "content_scripts": [
-        {
-            "matches": [
-                "<all_urls>"
-            ],
-            "js": [
-                "js/loader.js"
-            ]
-        }
-    ],
-    "web_accessible_resources": [
-        "js/*"
-    ]
+    }
 }

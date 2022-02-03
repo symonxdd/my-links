@@ -1,7 +1,3 @@
-
-
-
-
 function setSampleData() {
     chrome.storage.local.set({
         links: ["google.be", "youtube.com", "nani.tsk"],
@@ -49,10 +45,8 @@ window.addEventListener('message', event => {
 
 document.addEventListener('click', event => {
     const elementValue = event.target.value;
-    const linksArray = elementValue?.split(',');
-    if (linksArray) {
-        openLinksInNewTabs(linksArray);
-    }
+    const linksArray = elementValue.split(',');
+    openLinksInNewTabs(linksArray);
 });
 
 function openLinksInNewTabs(links, active = false) {
