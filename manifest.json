@@ -1,6 +1,6 @@
 {
     "name": "🧨 My Links!",
-    "description": "Links, Presets & Handlebars",
+    "description": "Links, Presets & Liquid",
     "version": "1.0",
     "manifest_version": 2,
     "permissions": [
@@ -12,10 +12,5 @@
     },
     "browser_action": {
         "default_popup": "html/popup.html"
-    },
-    "sandbox": {
-        "pages": [
-            "html/sandbox.html"
-        ]
     }
 }

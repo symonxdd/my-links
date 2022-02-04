@@ -1,47 +1,28 @@
-function setSampleData() {
-    chrome.storage.local.set({
-        links: ["google.be", "youtube.com", "nani.tsk"],
-        presets: [
-            {
-                id: 1,
-                name: "preset1",
-                links: ["q.com", "w.com", "e.com"]
-            },
-            {
-                id: 2,
-                name: "preset2",
-                links: ["r.com", "t.com", "y.com"]
-            },
-            {
-                id: 3,
-                name: "preset3",
-                links: ["google.be", "youtube.com", "nani.tsk"]
-            },
-            {
-                id: 4,
-                name: "preset4",
-                links: ["jeff.bezos"]
-            }
-        ]
-    }, () => {
-
-    });
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     setSampleData();
-    chrome.runtime.sendMessage({
-        action: "PopupHasBeenOpened"
+
+    chrome.storage.local.get({
+        links: [],
+        presets: []
+    }, items => {
+        engine
+            .parseAndRender(template.innerHTML,
+                {
+                    links: items.links,
+                    presets: items.presets
+                })
+            .then(html => result.innerHTML = html)
     });
+
+    // chrome.runtime.sendMessage({
+    //     action: "PopupHasBeenOpened"
+    // });
 });
 
-window.addEventListener('message', event => {
-    if (event.data.action === "CompiledHbsTemplateReady") {
-        const template = event.data.template;
-        console.log(template);
-        document.getElementById("app").innerHTML = template;
-    }
-});
+const template = document.querySelector('[type="text/template"]')
+const result = document.querySelector('#app')
+const engine = new liquidjs.Liquid()
+
 
 document.addEventListener('click', event => {
     const elementValue = event.target.value;
@@ -71,12 +52,12 @@ function getUrlWithProtocol(link) {
  * @param {string} string
  */
 function isValidLink(string) {
-    const pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
-        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-        '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+    const pattern = new RegExp('^(https?:\\/\\/)?' +            // protocol
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' +    // domain name
+        '((\\d{1,3}\\.){3}\\d{1,3}))' +                         // OR ip (v4) address
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +                     // port and path
+        '(\\?[;&a-z\\d%_.~+=-]*)?' +                            // query string
+        '(\\#[-a-z\\d_]*)?$', 'i');                             // fragment locator
 
     return !!pattern.test(string);
 }
@@ -85,6 +66,36 @@ function openLink(url, active) {
     chrome.tabs.create({
         url: url,
         active: active
+    });
+}
+
+function setSampleData() {
+    chrome.storage.local.set({
+        links: ["google.be", "youtube.com", "nani.tsk"],
+        presets: [
+            {
+                id: 1,
+                name: "preset1",
+                links: ["q.com", "w.com", "e.com"]
+            },
+            {
+                id: 2,
+                name: "preset2",
+                links: ["r.com", "t.com", "y.com"]
+            },
+            {
+                id: 3,
+                name: "preset3",
+                links: ["google.be", "youtube.com", "nani.tsk"]
+            },
+            {
+                id: 4,
+                name: "preset4",
+                links: ["jeff.bezos"]
+            }
+        ]
+    }, () => {
+
     });
 }
 
