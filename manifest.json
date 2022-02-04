@@ -2,15 +2,15 @@
     "name": "🧨 My Links!",
     "description": "Links, Presets & Liquid",
     "version": "1.0",
-    "manifest_version": 2,
+    "manifest_version": 3,
     "permissions": [
         "storage"
     ],
     "background": {
-        "page": "html/background.html",
-        "persistent": false
+        "service_worker": "js/service_worker.js",
+        "type": "module"
     },
-    "browser_action": {
+    "action": {
         "default_popup": "html/popup.html"
     }
 }

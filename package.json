@@ -1,0 +1,9 @@
+{
+    "name": "my-links",
+    "version": "0.0.1",
+    "description": "Links, Presets & Liquid",
+    "author": "Symon",
+    "dependencies": {
+        "liquidjs": "^9.34.0"
+    }
+}

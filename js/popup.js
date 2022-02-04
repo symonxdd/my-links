@@ -1,3 +1,12 @@
+import { Liquid } from 'liquidjs';
+const engine1 = new Liquid();
+
+// engine
+//     .parseAndRender('{{name | capitalize}}', {name: 'alice'})
+//     .then(console.log);     // outputs 'Alice'
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     setSampleData();
 
