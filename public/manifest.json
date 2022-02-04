@@ -1,5 +1,5 @@
 {
-    "name": "🧨 My Links!",
+    "name": "🧨 My Links! (webpack)",
     "description": "Links, Presets & Liquid",
     "version": "1.0",
     "manifest_version": 3,
@@ -7,10 +7,10 @@
         "storage"
     ],
     "background": {
-        "service_worker": "js/service_worker.js",
+        "service_worker": "service_worker.js",
         "type": "module"
     },
     "action": {
-        "default_popup": "html/popup.html"
+        "default_popup": "popup.html"
     }
 }

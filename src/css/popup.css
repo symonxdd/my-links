@@ -1,10 +1,12 @@
-@import url("../assets/Montserrat-Regular.ttf");
-
-* {
-    box-sizing: border-box;
-    padding: 0;
+*,
+*::before,
+*::after {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+/* @import url("/src/fonts/Montserrat-Regular.ttf"); */
 
 body {
     font-family: "Montserrat", sans-serif;
