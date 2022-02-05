@@ -6,10 +6,14 @@
     box-sizing: border-box;
 }
 
-/* @import url("/src/fonts/Montserrat-Regular.ttf"); */
+/* @import url("./Montserrat-Regular.ttf"); */
+/* @font-face {
+    font-family: Montserrat;
+    src: url("./Montserrat-Regular.ttf");
+} */
 
 body {
-    font-family: "Montserrat", sans-serif;
+    font-family: Montserrat, sans-serif;
     background-color: #0f0f0f;
     color: #c4c4c4;
     width: 450px;

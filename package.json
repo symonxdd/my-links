@@ -7,11 +7,9 @@
         "watch": "webpack --mode=development --watch --config config/webpack.config.js",
         "build": "webpack --mode=production --config config/webpack.config.js"
     },
-    "dependencies": {
-        "jquery": "^3.6.0",
-        "liquidjs": "^9.34.0"
-    },
     "devDependencies": {
+        "jquery": "^3.6.0",
+        "liquidjs": "^9.34.0",
         "copy-webpack-plugin": "^6.4.1",
         "css-loader": "^4.3.0",
         "file-loader": "^6.2.0",
