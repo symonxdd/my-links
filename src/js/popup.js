@@ -2,11 +2,15 @@
 
 import { Liquid } from 'liquidjs';
 import '../css/popup.css';
+// const path = require('path');
+import path from 'path';
 // import $ from "jquery";
 
-const engine = new Liquid();
-const template = document.querySelector('[type="text/template"]')
-const result = document.querySelector('#app')
+const engine = new Liquid({
+    root: path.resolve(__dirname, 'views/')
+});
+
+const app = document.querySelector('#app')
 
 document.addEventListener('DOMContentLoaded', () => {
     setSampleData();
@@ -15,12 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
         presets: []
     }, items => {
         engine
-            .parseAndRender(template.innerHTML,
+            .renderFile("presets.liquid",
                 {
                     links: items.links,
                     presets: items.presets
-                })
-            .then(html => result.innerHTML = html)
+                }).then(html => {
+                    app.innerHTML = html
+                });
     });
 
     // chrome.runtime.sendMessage({

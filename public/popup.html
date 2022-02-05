@@ -1,48 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Popup</title>
     <link rel="stylesheet" href="popup.css">
 </head>
 
 <body>
     <div id="app">(empty)</div>
-
-    <script type="text/template">
-        <h1>My Links!</h1>
-        <h2>Presets
-            {% if presets %}
-            ({{presets.length}})
-            {% endif %}     
-        </h2>
-
-        {% if presets %}
-            {%- for preset in presets %}
-            <button class="preset" value="{{preset.links}}" class="preset">{{preset.name}}</button>
-            {%- endfor%}
-        {% else %}
-            <div>(you got no presets)</div>
-        {% endif %} 
-        
-        <h2>Links
-            {% if links %}
-            ({{links.length}})
-            {% endif %}     
-        </h2>
-
-        {% if links %}
-            {%- for link in links %}
-            <div class="link">{{link}}</div>
-            {%- endfor%}
-        {% else %}
-            <div>(you got no links)</div>
-        {% endif %}
-    </script>
-
     <script src="popup.js"></script>
 </body>
-
-</html>
