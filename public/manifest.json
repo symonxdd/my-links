@@ -1,5 +1,5 @@
 {
-    "name": "🧨 My Links!",
+    "name": "🧨 My Links! (ES6 🚀)",
     "description": "Links, Presets & Liquid",
     "version": "1.0",
     "manifest_version": 3,
@@ -11,6 +11,6 @@
         "type": "module"
     },
     "action": {
-        "default_popup": "popup.html"
+        "default_popup": "app.html"
     }
 }

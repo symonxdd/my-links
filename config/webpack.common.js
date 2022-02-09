@@ -4,6 +4,8 @@ const SizePlugin = require('size-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const path = require('path');
+
 const PATHS = require('./paths');
 
 // To re-use webpack configuration across templates,
@@ -41,6 +43,18 @@ const common = {
                         },
                     },
                 ],
+            },
+            {
+                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                include: path.resolve(__dirname, '../node_modules/bootstrap-icons/font/fonts'),
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'webfonts',
+                        publicPath: '../webfonts',
+                    },
+                }
             }
         ],
     },

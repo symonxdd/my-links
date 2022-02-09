@@ -1,47 +1,76 @@
 'use strict';
 
 import { Liquid } from 'liquidjs';
-import '../css/popup.css';
-// const path = require('path');
 import path from 'path';
+import '../css/app.css';
+require('bootstrap-icons/font/bootstrap-icons.css');
 // import $ from "jquery";
 
 const engine = new Liquid({
-    root: path.resolve(__dirname, 'views/')
+    root: path.resolve(__dirname, 'views/'),
+    cache: true
 });
 
 const app = document.querySelector('#app')
 
 document.addEventListener('DOMContentLoaded', () => {
     setSampleData();
+    renderHome();
+});
+
+function handlePresetAndLinkEventHandlers() {
+    document.querySelectorAll('.preset, .link').forEach(element => {
+        element.addEventListener('click', event => {
+            const elementValue = event.target.value;
+            const linksArray = elementValue.split(',');
+            if (linksArray) {
+                openLinksInNewTabs(linksArray);
+            }
+        });
+    });
+}
+
+function handleSettingsButton() {
+    document.getElementById("settings").addEventListener('click', event => {
+        chrome.storage.local.get({
+            links: [],
+            presets: []
+        }, items => {
+            engine
+                .renderFile("settings.liquid",
+                    {
+                        links: items.links,
+                        presets: items.presets
+                    }).then(html => {
+                        app.innerHTML = html
+                        handleBackButton();
+                    });
+        });
+    });
+}
+function handleBackButton() {
+    document.getElementById("back").addEventListener('click', event => {
+        renderHome();
+    });
+}
+
+function renderHome() {
     chrome.storage.local.get({
         links: [],
         presets: []
     }, items => {
         engine
-            .renderFile("presets.liquid",
+            .renderFile("home.liquid",
                 {
                     links: items.links,
                     presets: items.presets
                 }).then(html => {
                     app.innerHTML = html
+                    handlePresetAndLinkEventHandlers();
+                    handleSettingsButton();
                 });
     });
-
-    // chrome.runtime.sendMessage({
-    //     action: "PopupHasBeenOpened"
-    // });
-});
-
-document.addEventListener('click', event => {
-    const elementValue = event.target.value;
-    if (!elementValue) return;
-
-    const linksArray = elementValue.split(',');
-    if (linksArray) {
-        openLinksInNewTabs(linksArray);
-    }
-});
+}
 
 function openLinksInNewTabs(links, active = false) {
     links.forEach(link => {
